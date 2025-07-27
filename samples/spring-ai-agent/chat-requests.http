@@ -1,0 +1,71 @@
+#########################################
+# Simple Stateless Chat
+### ask the AI generic question
+POST localhost:8080/chat
+Content-Type: text/plain
+
+What is the weather in Munich on 19.06.2025?
+
+#########################################
+# Simple Stateless Chat
+### ask the AI generic question
+POST localhost:8080/chat
+Content-Type: text/plain
+
+What is the local time in Barcelona?
+
+#########################################
+### Attempt memory with stateless: fail
+### tell your name
+POST localhost:8080/chat
+Content-Type: text/plain
+
+My name is Andrei
+
+### ask your name: doesn't work for stateless chat client
+POST localhost:8080/chat
+Content-Type: text/plain
+
+What is my name?
+
+#########################################
+# Chat with Local Memory
+### tell your name to chat client with memory
+POST localhost:8080/memory/chat
+Content-Type: text/plain
+
+My name is Andrei
+
+### aks your name to chat client with memory
+POST localhost:8080/memory/chat
+Content-Type: text/plain
+
+What is my name?
+
+#########################################
+# Chat with External Memory
+### tell your name to chat client with memory
+POST localhost:8080/ext-memory/chat
+Content-Type: text/plain
+
+My name is Andrei
+
+### aks your name to chat client with memory
+POST localhost:8080/ext-memory/chat
+Content-Type: text/plain
+
+What is my name?
+
+#########################################
+# Chat with RAG pgvector
+### Load RAG data into pgvector database
+POST localhost:8080/rag-pgvector/load
+Content-Type: text/plain
+
+Unicorn have origins in different cultures: Chinese Qilin, Indian unicorn seals, Greek accounts
+
+### Ask about the unicorn, check if RAG is active
+POST localhost:8080/rag-pgvector/chat
+Content-Type: text/plain
+
+What are the unicorn origins?
